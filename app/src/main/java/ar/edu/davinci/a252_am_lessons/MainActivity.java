@@ -1,6 +1,8 @@
 package ar.edu.davinci.a252_am_lessons;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 3. Crear el button
         Button button = new Button(this);
+        button.setBackgroundColor(R.color.black);
         button.setText(R.string.button_message);
 
         // 4. Agregar los hijos al container
