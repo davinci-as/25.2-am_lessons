@@ -3,6 +3,8 @@ package ar.edu.davinci.a252_am_lessons;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
+import android.content.Intent;
 import android.util.Log;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
                 //TextView textView = findViewById(R.id.textView);
                 textView.setText("Le hice click también");
+
+                Intent intent = new Intent(MainActivity.this, ListViewActivity.class);
+                startActivity(intent);
+
             }
         });
 
