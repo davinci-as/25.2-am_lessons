@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
                 //TextView textView = findViewById(R.id.textView);
                 textView.setText("Le hice click también");
-
                 Intent intent = new Intent(MainActivity.this, ListViewActivity.class);
                 startActivity(intent);
 
@@ -67,5 +66,7 @@ public class MainActivity extends AppCompatActivity {
         container.addView(button2);
 
         Log.i("testing", String.valueOf(R.string.log_message));
+
+        (new ImageDownloader()).execute("https://google.com");
     }
 }
