@@ -69,6 +69,6 @@ public class MainActivity extends AppCompatActivity {
         Log.i("testing", String.valueOf(R.string.log_message));
 
         //(new ImageDownloader()).execute("https://www.gstatic.com/devrel-devsite/prod/va726f77ce19c264bc8ae4520f2ee26cc9641a80eead40c2c8c599dc34ccb25d1/android/images/lockup.png");
-        (new ApiRequest()).execute("https://rickandmortyapi.com/api/character");
+        (new ApiRequest()).execute("https://rickandmortyapi.com/api/character/");
     }
 }
