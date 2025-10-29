@@ -13,12 +13,26 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+public class MainActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if(user != null) {
+            Log.i("firebase-auth", user.getDisplayName());
+        } else {
+            Log.i("firebase-auth", "no hay usuario logueado");
+        }
+
         setContentView(R.layout.activity_main);
         // 1. Encontrar container
         LinearLayout container = findViewById(R.id.container);
