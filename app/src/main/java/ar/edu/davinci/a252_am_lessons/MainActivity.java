@@ -1,5 +1,6 @@
 package ar.edu.davinci.a252_am_lessons;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -28,9 +29,11 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         if(user != null) {
-            Log.i("firebase-auth", user.getDisplayName());
+            //TODO: eliminar después de la prueba
+            //mAuth.signOut();
         } else {
-            Log.i("firebase-auth", "no hay usuario logueado");
+           Intent intent = new Intent(this, LoginActivity.class);
+           startActivity(intent);
         }
 
         setContentView(R.layout.activity_main);
