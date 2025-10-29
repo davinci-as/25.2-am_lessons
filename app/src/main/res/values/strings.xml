@@ -3,4 +3,5 @@
     <string name="welcome_message">¡Hola Mundo!</string>
     <string name="button_message">Button</string>
     <string name="log_message">Probando mensajes</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
 </resources>

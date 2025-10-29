@@ -1,5 +1,6 @@
 package ar.edu.davinci.a252_am_lessons;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
             .addOnCompleteListener(task -> {
                 if(task.isSuccessful()) {
                     Log.i("firebase-auth", "login exitoso");
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
                 }
             });
     }

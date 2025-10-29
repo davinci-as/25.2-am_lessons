@@ -65,16 +65,14 @@ public class MainActivity extends AppCompatActivity {
 
         Button button2 = new Button(this);
         button2.setBackgroundColor(R.color.black);
-        button2.setText(R.string.button_message);
+        button2.setText(R.string.cerrar_sesion);
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Button button = (Button) v;
-                button.setText("Le hice click");
-
-                //TextView textView = findViewById(R.id.textView);
-                textView.setText("Le hice click desde otro lado");
+                mAuth.signOut();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
 
