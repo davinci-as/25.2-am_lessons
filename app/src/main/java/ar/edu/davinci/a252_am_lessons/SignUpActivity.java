@@ -35,12 +35,37 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public void signup (View v) {
+        EditText nameInput = findViewById(R.id.signupName);
+        EditText emailInput = findViewById(R.id.signupEmail);
+        EditText passwordInput = findViewById(R.id.signupPassword);
+
+        String name = nameInput.getText().toString();
+        String email = emailInput.getText().toString();
+        String password = passwordInput.getText().toString();
+
+        if(this.mAuth == null) return;
+
+        if(!validateName(name)) return;
+        if(!validateEmail(email)) return;
+        if(!validatePassword(password)) return;
+
+        this.mAuth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()) {
+                            Log.i("create-user", "usuario creado");
+                        }
+                    }
+                });
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        this.mAuth = FirebaseAuth.getInstance();
 
         setContentView(R.layout.activity_sign_up);
     }
