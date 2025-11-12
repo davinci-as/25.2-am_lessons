@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">25.2-am_lessons</string>
     <string name="welcome_message">¡Hola Mundo!</string>
-    <string name="button_message">Button</string>
+    <string name="button_message">Editar perfil</string>
     <string name="log_message">Probando mensajes</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="perfil_editado">Perfil editado</string>
+    <string name="actualizar_usuario">Actualizar usuario</string>
+    <string name="updateButton">Actualizar datos del perfil</string>
 </resources>

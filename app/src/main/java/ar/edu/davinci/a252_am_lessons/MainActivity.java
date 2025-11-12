@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Button button = (Button) v;
-                button.setText("Le hice click");
+                button.setText(R.string.perfil_editado);
 
                 //TextView textView = findViewById(R.id.textView);
                 textView.setText("Le hice click también");

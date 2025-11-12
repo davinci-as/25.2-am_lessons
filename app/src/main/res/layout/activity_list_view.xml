@@ -23,11 +23,33 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <!--TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="TextView" /-->
+
+            <TextView
+                android:id="@+id/signupTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/actualizar_usuario"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                />
+
+            <Button
+                android:id="@+id/userUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="updateUser"
+                android:text="@string/updateButton" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
