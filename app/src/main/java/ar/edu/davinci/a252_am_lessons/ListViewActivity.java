@@ -3,6 +3,7 @@ package ar.edu.davinci.a252_am_lessons;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,11 +17,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
+
 public class ListViewActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
     FirebaseFirestore db;
+
+    String idUser;
 
     public void loadProfileData (String uid) {
         Log.i("editar-perfil", "editando");
@@ -35,6 +40,8 @@ public class ListViewActivity extends AppCompatActivity {
                         Log.i("editar-perfil", "llegó el dato");
 
                         for(QueryDocumentSnapshot doc: task.getResult()) {
+
+                            idUser = doc.getId();
                             String name = (String) doc.getData().get("name");
 
                             EditText userName = findViewById(R.id.userName);
@@ -46,7 +53,27 @@ public class ListViewActivity extends AppCompatActivity {
     }
 
     public void updateUser(View v) {
+        if(idUser == null) return;
+        if(db == null) return;
 
+        HashMap newUserData = new HashMap<>();
+        EditText userName = findViewById(R.id.userName);
+
+        newUserData.put("name", userName.getText().toString());
+
+        db
+            .collection("users")
+            .document(idUser)
+            .update(newUserData)
+            .addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if(task.isSuccessful()) {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            });
     }
 
     @Override
