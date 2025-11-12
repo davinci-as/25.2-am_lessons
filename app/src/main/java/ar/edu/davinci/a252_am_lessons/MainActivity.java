@@ -26,6 +26,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+
+    public void updateUiWithUserInfo(String name, TextView nameTextView) {
+        nameTextView.setText(String.format("Hola %s", name));
+    }
+
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,30 +40,6 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         FirebaseUser user = mAuth.getCurrentUser();
-
-        if(user != null) {
-            //TODO: eliminar después de la prueba
-            //mAuth.signOut();
-            String UID = user.getUid();
-            db.collection("users")
-                    .whereEqualTo("uid", UID)
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    Log.d("firebase-firestore", document.getId() + " => " + document.getData().get("name"));
-                                }
-                            } else {
-                                Log.d("firebase-firestore", "Error getting documents: ", task.getException());
-                            }
-                        }
-                    });
-        } else {
-           Intent intent = new Intent(this, LoginActivity.class);
-           startActivity(intent);
-        }
 
         setContentView(R.layout.activity_main);
         // 1. Encontrar container
@@ -109,5 +90,30 @@ public class MainActivity extends AppCompatActivity {
 
         //(new ImageDownloader()).execute("https://www.gstatic.com/devrel-devsite/prod/va726f77ce19c264bc8ae4520f2ee26cc9641a80eead40c2c8c599dc34ccb25d1/android/images/lockup.png");
         (new ApiRequest()).execute("https://rickandmortyapi.com/api/character/");
+
+        if(user != null) {
+            //TODO: eliminar después de la prueba
+            //mAuth.signOut();
+            String UID = user.getUid();
+            db.collection("users")
+                    .whereEqualTo("uid", UID)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    String name = (String) document.getData().get("name");
+                                    updateUiWithUserInfo(name, textView);
+                                }
+                            } else {
+                                Log.d("firebase-firestore", "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
+        } else {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 }
