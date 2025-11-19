@@ -7,4 +7,6 @@
     <string name="perfil_editado">Perfil editado</string>
     <string name="actualizar_usuario">Actualizar usuario</string>
     <string name="updateButton">Actualizar datos del perfil</string>
+    <string name="API_CHARACTER">https://rickandmortyapi.com/api/character/</string>
+    <string name="LOG_TAG_FIRESTORE">firebase-firestore</string>
 </resources>
